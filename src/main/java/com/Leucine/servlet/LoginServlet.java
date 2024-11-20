@@ -1,8 +1,11 @@
 package com.Leucine.servlet;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import com.Leucine.dao.LoginDAO;
+import com.Leucine.dao.RequestDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -36,9 +39,18 @@ public class LoginServlet extends HttpServlet {
          // Redirect based on role
             switch (role) {
                 case "Employee":
+                    // Redirect to requestAccess.jsp
                     resp.sendRedirect(req.getContextPath() + "/requestAccess.jsp");
                     break;
                 case "Manager":
+                	// Fetch pending requests for managers
+                    RequestDAO dao = new RequestDAO();
+                    List<Map<String, String>> pendingRequests = dao.getPendingRequests();
+
+                    // Set pending requests in the session
+                    session.setAttribute("pendingRequests", pendingRequests);
+
+                    // Redirect to pendingRequests.jsp
                     resp.sendRedirect(req.getContextPath() + "/pendingRequests.jsp");
                     break;
                 case "Admin":
