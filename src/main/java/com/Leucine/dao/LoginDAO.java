@@ -29,4 +29,21 @@ public class LoginDAO {
 
         return role;
     }
+	
+	 public Integer getUserId(String username, String password) {
+	        Integer userId = null;
+	        String query = "SELECT id FROM users WHERE username = ? AND password = ?";
+	        try (Connection conn = DBConnection.getConnection();
+	             PreparedStatement ps = conn.prepareStatement(query)) {
+	            ps.setString(1, username);
+	            ps.setString(2, password);
+	            ResultSet rs = ps.executeQuery();
+	            if (rs.next()) {
+	                userId = rs.getInt("id");
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return userId;
+	    }
 }

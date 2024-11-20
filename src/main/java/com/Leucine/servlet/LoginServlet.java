@@ -23,6 +23,7 @@ public class LoginServlet extends HttpServlet {
 		
 		// Validate user credentials and return the user's role if valid.
 		String role = new LoginDAO().validateUser(username, password);
+		Integer userId = new LoginDAO().getUserId(username, password); // Retrieve userId
 		
 		if(role!=null)
 		{
@@ -30,6 +31,7 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("username", username);
             session.setAttribute("role", role);
+            session.setAttribute("userId", userId); //save user id
             
          // Redirect based on role
             switch (role) {
