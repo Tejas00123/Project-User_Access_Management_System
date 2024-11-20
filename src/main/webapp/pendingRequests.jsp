@@ -9,7 +9,7 @@
     <style>
         /* Add custom styles for the table and its borders */
         table {
-            width: 100%;
+            width: 100%; 
             border-collapse: collapse; /* Ensures borders are joined */
         }
         th, td {
