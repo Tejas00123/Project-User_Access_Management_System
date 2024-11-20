@@ -56,7 +56,7 @@
         %>
         <table>
             <thead>
-                <tr>
+                <tr> 
                     <th>Employee Name</th>
                     <th>Software Name</th>
                     <th>Access Type</th>
