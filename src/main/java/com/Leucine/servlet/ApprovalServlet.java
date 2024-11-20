@@ -42,7 +42,7 @@ public class ApprovalServlet extends HttpServlet {
         RequestDAO requestDAO = new RequestDAO();
 
         try {
-            // Perform the update based on action
+           //Perform the update based on action
             if (action.equals("approve")) {
                 success = requestDAO.updateRequestStatus(Integer.parseInt(requestId), "Approved");
             } else if (action.equals("reject")) {
